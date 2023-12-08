@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    <div class="container">
+        <div class="inner-container">
+            <div class="table-header">
+                <div>Cliente</div>
+                <div>Pet</div>
+            </div>
+            <% for (var i=0; i < clientes.length ; i++) { %>
+                <div class="table-row">
+                    <div><%= clientes[i].cliente %></div>
+                    <div><%= clientes[i].pet %></div>
+                </div>
+                <% for (var j=0; j < clientes[i].ficha.length ; j++) { %>
+                    <div class="table-row">
+                        <div class="date-column">
+                            <%= new Date(clientes[i].ficha[j].data).toLocaleDateString('pt-BR', {timeZone:'UTC'}) %>
+                        </div>
+                        <div class="price-column">
+                            R$ <%= clientes[i].ficha[j].preco %>
+                        </div>
+                        <div class="procedure-column">
+                            <% for (var k=0; k < clientes[i].ficha[j].procedimentos.length ; k++) { %>
+                                <%= clientes[i].ficha[j].procedimentos[k] %>,
+                            <% } %>
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+    </div>
+</body>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 600px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .inner-container {
+        display: flex;
+        width: 80%;
+        flex-direction: column;
+        border: solid 2px black;
+        margin-top: 50px;
+        padding: 30px;
+        background-color: #fff;
+    }
+
+    .table-header {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        border-bottom: solid 2px black;
+    }
+
+    .table-header div {
+        flex: 1;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .table-row {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        border-top: solid 1px black;
+        border-bottom: solid 1px black;
+    }
+
+    .table-row div {
+        flex: 1;
+        text-align: center;
+    }
+
+    .date-column {
+        flex: 1;
+        text-align: center;
+    }
+
+    .price-column {
+        flex: 1;
+        text-align: center;
+        color: green;
+    }
+
+    .procedure-column {
+        flex: 1;
+        text-align: center;
+    }
+</style>
+</html>
